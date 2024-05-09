@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Store - Cart</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            background-image: url("images/bg.png");
+            background-size: cover;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .navbar-brand {
+            color: white;
+            font-weight: bold;
+        }
+
+        .nav-link {
+            color: white;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .cart-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-item-text {
+            flex: 1;
+            color: white;
+        }
+
+        .remove-button {
+            background-color: transparent;
+            border: none;
+            color: #ff0000;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .remove-button:hover {
+            color: #cc0000;
+        }
+
+        .cart-total {
+            font-weight: bold;
+            font-size: 18px;
+            color: white;
+        }
+
+        .btn-checkout {
+            background-color: #006aff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        .btn-checkout:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="Aboutus.html">Game Store</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Home.html">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="Cart.html">Cart</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h2 style="color: white;">Your Cart</h2>
+        <div id="cart-items"></div>
+        <div class="cart-total">Total: $<span id="cart-total">0.00</span></div>
+        <button class="btn-checkout" id="checkoutButton" disabled>Proceed to Checkout</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js"></script>
+    <script>
+        var cartItems = [];
+
+        function addToCart(title, price) {
+            cartItems.push({ title: title, price: price });
+            updateCart();
+        }
+
+        function removeFromCart(index) {
+            cartItems.splice(index, 1);
+            updateCart();
+        }
+
+        function updateCart() {
+            var cartContainer = document.getElementById('cart-items');
+            cartContainer.innerHTML = '';
+
+            cartItems.forEach(function (item, index) {
+                var cartItemDiv = document.createElement('div');
+                cartItemDiv.classList.add('cart-item');
+
+                var itemText = document.createElement('span');
+                itemText.classList.add('cart-item-text');
+                itemText.textContent = item.title + ' - $' + item.price;
+
+                var removeButton = document.createElement('button');
+                removeButton.classList.add('remove-button');
+                removeButton.innerHTML = '<i class="material-icons">clear</i>';
+                removeButton.addEventListener('click', function () {
+                    removeFromCart(index);
+                });
+
+                cartItemDiv.appendChild(itemText);
+                cartItemDiv.appendChild(removeButton);
+                cartContainer.appendChild(cartItemDiv);
+            });
+
+            var cartTotal = cartItems.reduce(function (acc, curr) {
+                return acc + parseFloat(curr.price);
+            }, 0);
+            document.getElementById('cart-total').textContent = cartTotal.toFixed(2);
+
+            var checkoutButton = document.getElementById('checkoutButton');
+            checkoutButton.disabled = cartItems.length === 0;
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var storedCartItems = localStorage.getItem('cart');
+            if (storedCartItems) {
+                cartItems = JSON.parse(storedCartItems);
+                updateCart();
+            }
+        });
+
+        window.addEventListener('beforeunload', function () {
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+        });
+
+        function handleCheckout() {
+            if (cartItems.length > 0) {
+                window.location.href = 'payment.php';
+            }
+        }
+        document.querySelector('.btn-checkout').addEventListener('click', handleCheckout);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Store</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            background-image: url("images/bg.png");
+            background-size: cover;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .navbar-brand {
+            color: white;
+            font-weight: bold;
+        }
+
+        .nav-link {
+            color: white;
+        }
+
+        .banner {
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .banner h1 {
+            font-size: 60px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .banner p {
+            font-size: 20px;
+        }
+
+        .banner button {
+            background-color: #ff9900;
+            border: none;
+            padding: 15px 30px;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .catalog {
+            padding: 40px;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .catalog h2 {
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 20px; 
+            overflow: hidden; 
+            transition: transform 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.2); 
+            backdrop-filter: blur(10px); 
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-img-top {
+            height: 200px; 
+            object-fit: cover;
+            border-radius: 20px 20px 0 0; 
+        }
+
+        .card-body {
+            background-color: transparent; 
+            padding: 15px;
+            color: white; 
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .card-text {
+            font-size: 14px;
+            color: white; 
+        }
+
+        .card-price {
+            font-size: 16px;
+            font-weight: bold;
+            color: #ff9900;
+        }
+
+        .footer {
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="Aboutus.html">Game Store</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="Home.html">Home</a>
+                    </li>
+                    <!-- <li class="nav-item"> -->
+                        <!-- <a class="nav-link" href="login.php">Login</a> -->
+                    <!-- </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="Cart.html">Cart</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="banner">
+        <div class="container">
+            <h1>Get ready to play! You're in the Game Store</h1>
+            <p>The best place to buy your favorite game keys</p>
+            <a href="Store.html"><button class="btn btn-primary">Shop Now</button></a>
+        </div>
+    </div>
+    <div class="catalog">
+        <div class="container">
+            <h2>Featured Games</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="card">
+                        <img src="images/GTA 5.jpg" class="card-img-top" alt="GTA 5">
+                        <div class="card-body">
+                            <h5 class="card-title">GTA 5</h5>
+                            <p class="card-text">Grand Theft Auto V for PC offers players the option to explore the award-winning world of Los Santos and Blaine County.</p>
+                            <p class="card-price">$15.99</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="card">
+                        <img src="images/Days Gone.jpg" class="card-img-top" alt="Days Gone">
+                        <div class="card-body">
+                            <h5 class="card-title">Days Gone</h5>
+                            <p class="card-text">Ride and fight into a deadly, post pandemic America. Play as Deacon St. John, a drifter and bounty hunter.</p>
+                            <p class="card-price">$14.99</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="card">
+                        <img src="images/Elden Ring.jpg" class="card-img-top" alt="Elden Ring">
+                        <div class="card-body">
+                            <h5 class="card-title">Elden Ring</h5>
+                            <p class="card-text">In the Lands Between ruled by Queen Marika the Eternal, the Elden Ring, the source of the Erdtree, has been shattered.</p>
+                            <p class="card-price">$39.99</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="container">
+            <p>© 2024 Game Store. All rights reserved.</p>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
